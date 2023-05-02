@@ -1,0 +1,54 @@
+<style>
+    #container {
+        width: 500px;
+        padding: 10px;
+        padding-top: 0px;
+    }
+    
+    body {
+        border: 6px solid blue;
+        margin: 0;
+    }
+    
+    .form-group {
+        font-size: 1.2em;
+    }
+    
+    label {
+        display: block;
+        padding-left: 15px;
+        text-indent: -15px;
+    }
+    input {
+        width: 13px;
+        height: 13px;
+        padding: 0;
+        margin:0;
+        vertical-align: bottom;
+        position: relative;
+        top: -1px;
+        *overflow: hidden;
+    }
+    
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 10px;
+        border-bottom: 3px solid black;
+        display: block;
+        padding-bottom: 3px;
+    }
+</style>
+<div id="container">
+    <h1>PowerSchool PLUS</h1>
+    <span class="section-title">Options</span>
+    <div class="form-group">
+        <label for="enableDarkMode"><input type="checkbox" name="enableDarkMode"> Enable dark mode</label>
+    </div>
+    <div class="form-group">
+        <label for="enableGPA"><input type="checkbox" name="enableDarkMode"> Enable GPA calculation</label>
+    </div>
+    <div class="form-group">
+        <label for="enableHypoGrades"><input type="checkbox" name="enableHypoGrades"> Enable edited grade calculation (BETA)</label>
+    </div>
+</div>
+<script src="extensionSettingsUpdater.js" ></script>
