@@ -1,35 +1,37 @@
+<meta charset="UTF-8">
 <style>
     #container {
         width: 500px;
         padding: 10px;
         padding-top: 0px;
     }
-    
+
     body {
         border: 6px solid blue;
         margin: 0;
     }
-    
+
     .form-group {
         font-size: 1.2em;
     }
-    
+
     label {
         display: block;
         padding-left: 15px;
         text-indent: -15px;
     }
+
     input {
         width: 13px;
         height: 13px;
         padding: 0;
-        margin:0;
+        margin: 0;
         vertical-align: bottom;
         position: relative;
         top: -1px;
         *overflow: hidden;
     }
-    
+
     .section-title {
         font-size: 2em;
         margin-bottom: 10px;
@@ -48,7 +50,24 @@
         <label for="enableGPA"><input type="checkbox" name="enableDarkMode"> Enable GPA calculation</label>
     </div>
     <div class="form-group">
-        <label for="enableHypoGrades"><input type="checkbox" name="enableHypoGrades"> Enable edited grade calculation (BETA)</label>
+        <label for="enableHypoGrades"><input type="checkbox" name="enableHypoGrades"> Enable edited grade calculation
+            (BETA)</label>
+    </div>
+    <!-- 添加权重输入框的表单组 -->
+    <div class="form-group">
+        <span class="section-title">Category Weights</span>
+        <label for="quarterExams">Quarter Exams 期中期末考试:</label>
+        <input type="number" step="0.01" min="0" max="1" name="quarterExams" id="quarterExams"
+               style="width: 50px;height: 20px;">
+        <label for="classAndHomeWork">Class and Home Work 课堂及家庭作业:</label>
+        <input type="number" step="0.01" min="0" max="1" name="classAndHomeWork" id="classAndHomeWork"
+               style="width: 50px;height: 20px;">
+        <label for="testsAndQuizzes">Tests and Quizzes 考试及测验:</label>
+        <input type="number" step="0.01" min="0" max="1" name="testsAndQuizzes" id="testsAndQuizzes"
+               style="width: 50px;height: 20px;">
+        <label for="classParticipation">Class Participation 课堂参与:</label>
+        <input type="number" step="0.01" min="0" max="1" name="classParticipation" id="classParticipation"
+               style="width: 50px;height: 20px;">
     </div>
 </div>
-<script src="extensionSettingsUpdater.js" ></script>
+<script src="extensionSettingsUpdater.js"></script>

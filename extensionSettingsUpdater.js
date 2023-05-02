@@ -56,3 +56,27 @@ function updateHypoGradeSetting() {
         chrome.storage.local.set({ "psHypoGradeCalc": false }, function(){});
     }
 }
+
+function saveWeights() {
+    chrome.storage.sync.set({
+        'quarterExamsWeight': document.querySelector("#quarterExams").value,
+        'classAndHomeWorkWeight': document.querySelector("#classAndHomeWork").value,
+        'testsAndQuizzesWeight': document.querySelector("#testsAndQuizzes").value,
+        'classParticipationWeight': document.querySelector("#classParticipation").value
+    });
+}
+
+function loadWeights() {
+    chrome.storage.sync.get(['quarterExamsWeight', 'classAndHomeWorkWeight', 'testsAndQuizzesWeight', 'classParticipationWeight'], function (weights) {
+        document.querySelector("#quarterExams").value = weights.quarterExamsWeight || 0.4;
+        document.querySelector("#classAndHomeWork").value = weights.classAndHomeWorkWeight || 0.2;
+        document.querySelector("#testsAndQuizzes").value = weights.testsAndQuizzesWeight || 0.3;
+        document.querySelector("#classParticipation").value = weights.classParticipationWeight || 0.1;
+    });
+}
+
+document.querySelectorAll("input[type='number']").forEach(input => {
+    input.addEventListener('change', saveWeights);
+});
+
+loadWeights();
