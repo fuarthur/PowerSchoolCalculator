@@ -2,51 +2,64 @@ chrome.storage.local.get(["psHypoGradeCalc"], function(items){
     if(items["psHypoGradeCalc"]) {
         let gradeEdited = false;
         let firstRun = true;
-        // todo
         function calculateGrade() {
             const Grade = class {
-                constructor(pointsEarned, pointsPossible) {
+                constructor(pointsEarned, pointsPossible, category) {
                     this.ptE = pointsEarned;
                     this.ptP = pointsPossible;
+                    this.category = category;
                 }
             }
+
+            const categoryWeights = {
+                "Quarter Exams 期中期末考试": 0.4,
+                "Class and Home Work 课堂及家庭作业": 0.2,
+                "Tests and Quizzes 考试及测验": 0.3,
+                "Class Participation 课堂参与": 0.1
+            };
 
             let grades = [];
             let gradesTable = document.querySelector("#scoreTable");
-            for(let i = 1; i < gradesTable.rows.length - 1; i++) {
-                let element = gradesTable.rows[i].cells[10].querySelector("span");
-                let gradeSplit = [];
-                if(element.innerHTML.includes("input")) {
-                    gradeSplit.push(element.querySelector("input[type=text]:nth-child(1)").value);
-                    gradeSplit.push(element.querySelector("input[type=text]:nth-child(2)").value);
-                } else {
-                    gradeSplit = element.innerHTML.trim().split("/");
-                }
-                if(firstRun) {
-                element.ondblclick = function() {
-                    let newElement = changeElementToInput(element);
-                    newElement.ondblclick = null;
-                }
-            }
+            for (let i = 1; i < gradesTable.rows.length - 1; i++) {
+                let categoryElement = gradesTable.rows[i].querySelector("td.categorycol > span.psonly");
+                let category = categoryElement.innerHTML.trim();
 
-                element.style.cursor = "pointer";
-                if(gradeSplit[0] !== "--") {
-                    let newGrade = new Grade(parseFloat(gradeSplit[0]), parseFloat(gradeSplit[1]));
+                let gradeElement = gradesTable.rows[i].cells[10].querySelector("span");
+                let gradeSplit = [];
+                if (gradeElement.innerHTML.includes("input")) {
+                    gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(1)").value);
+                    gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(2)").value);
+                } else {
+                    gradeSplit = gradeElement.innerHTML.trim().split("/");
+                }
+
+                if (firstRun) {
+                    gradeElement.ondblclick = function () {
+                        let newElement = changeElementToInput(gradeElement);
+                        newElement.ondblclick = null;
+                    }
+                }
+
+                gradeElement.style.cursor = "pointer";
+                if (gradeSplit[0] !== "--") {
+                    let newGrade = new Grade(parseFloat(gradeSplit[0]), parseFloat(gradeSplit[1]), category);
                     grades.push(newGrade);
                 }
             }
 
-            let gradePtE = 0;
-            let gradePtP = 0;
+            let gradeWeightedSum = 0;
+            let totalWeights = 0;
 
-            for(let i = 0; i < grades.length; i++) {
-                gradePtE += grades[i].ptE;
-                gradePtP += grades[i].ptP;
+            for (let i = 0; i < grades.length; i++) {
+                let gradeWeight = categoryWeights[grades[i].category];
+                gradeWeightedSum += (grades[i].ptE / grades[i].ptP) * gradeWeight;
+                totalWeights += gradeWeight;
             }
 
             firstRun = false;
-            return Math.round((gradePtE / gradePtP) * 10000) / 100;
+            return Math.round((gradeWeightedSum / totalWeights) * 10000) / 100;
         }
+
 
         function changeElementToInput(element) {
             let currentScore = element.innerHTML.trim();
