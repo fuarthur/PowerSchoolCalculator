@@ -44,30 +44,30 @@
     <h1>PowerSchool PLUS</h1>
     <span class="section-title">Options</span>
     <div class="form-group">
-        <label for="enableDarkMode"><input type="checkbox" name="enableDarkMode"> Enable dark mode</label>
+        <label for="enableDarkMode"><input name="enableDarkMode" type="checkbox"> Enable dark mode</label>
     </div>
     <div class="form-group">
-        <label for="enableGPA"><input type="checkbox" name="enableDarkMode"> Enable GPA calculation</label>
+        <label for="enableGPA"><input name="enableDarkMode" type="checkbox"> Enable GPA calculation</label>
     </div>
     <div class="form-group">
-        <label for="enableHypoGrades"><input type="checkbox" name="enableHypoGrades"> Enable edited grade calculation
+        <label for="enableHypoGrades"><input name="enableHypoGrades" type="checkbox"> Enable edited grade calculation
             (BETA)</label>
     </div>
     <!-- 添加权重输入框的表单组 -->
     <div class="form-group">
         <span class="section-title">Category Weights</span>
         <label for="quarterExams">Quarter Exams 期中期末考试:</label>
-        <input type="number" step="0.1" min="0" max="1" name="quarterExams" id="quarterExams"
-               style="width: 50px;height: 20px;">
+        <input id="quarterExams" max="1" min="0" name="quarterExams" step="0.1" style="width: 50px;height: 20px;"
+               type="number">
         <label for="classAndHomeWork">Class and Home Work 课堂及家庭作业:</label>
-        <input type="number" step="0.1" min="0" max="1" name="classAndHomeWork" id="classAndHomeWork"
-               style="width: 50px;height: 20px;">
+        <input id="classAndHomeWork" max="1" min="0" name="classAndHomeWork" step="0.1" style="width: 50px;height: 20px;"
+               type="number">
         <label for="testsAndQuizzes">Tests and Quizzes 考试及测验:</label>
-        <input type="number" step="0.1" min="0" max="1" name="testsAndQuizzes" id="testsAndQuizzes"
-               style="width: 50px;height: 20px;">
+        <input id="testsAndQuizzes" max="1" min="0" name="testsAndQuizzes" step="0.1" style="width: 50px;height: 20px;"
+               type="number">
         <label for="classParticipation">Class Participation 课堂参与:</label>
-        <input type="number" step="0.1" min="0" max="1" name="classParticipation" id="classParticipation"
-               style="width: 50px;height: 20px;">
+        <input id="classParticipation" max="1" min="0" name="classParticipation" step="0.1" style="width: 50px;height: 20px;"
+               type="number">
     </div>
 </div>
 <script src="extensionSettingsUpdater.js"></script>

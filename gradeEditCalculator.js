@@ -13,42 +13,42 @@ chrome.storage.local.get(["psHypoGradeCalc"], function (items) {
                         "Class Participation 课堂参与": parseFloat(weights.classParticipationWeight)
                     };
 
-                const Grade = class {
-                    constructor(pointsEarned, pointsPossible, category) {
-                        this.ptE = pointsEarned;
-                        this.ptP = pointsPossible;
-                        this.category = category;
-                    }
-                }
-
-                let grades = [];
-                let gradesTable = document.querySelector("#scoreTable");
-                for (let i = 1; i < gradesTable.rows.length - 1; i++) {
-                    let categoryElement = gradesTable.rows[i].querySelector("td.categorycol > span.psonly");
-                    let category = categoryElement.innerHTML.trim();
-
-                    let gradeElement = gradesTable.rows[i].cells[10].querySelector("span");
-                    let gradeSplit = [];
-                    if (gradeElement.innerHTML.includes("input")) {
-                        gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(1)").value);
-                        gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(2)").value);
-                    } else {
-                        gradeSplit = gradeElement.innerHTML.trim().split("/");
-                    }
-
-                    if (firstRun) {
-                        gradeElement.ondblclick = function () {
-                            let newElement = changeElementToInput(gradeElement);
-                            newElement.ondblclick = null;
+                    const Grade = class {
+                        constructor(pointsEarned, pointsPossible, category) {
+                            this.ptE = pointsEarned;
+                            this.ptP = pointsPossible;
+                            this.category = category;
                         }
                     }
 
-                    gradeElement.style.cursor = "pointer";
-                    if (gradeSplit[0] !== "--") {
-                        let newGrade = new Grade(parseFloat(gradeSplit[0]), parseFloat(gradeSplit[1]), category);
-                        grades.push(newGrade);
+                    let grades = [];
+                    let gradesTable = document.querySelector("#scoreTable");
+                    for (let i = 1; i < gradesTable.rows.length - 1; i++) {
+                        let categoryElement = gradesTable.rows[i].querySelector("td.categorycol > span.psonly");
+                        let category = categoryElement.innerHTML.trim();
+
+                        let gradeElement = gradesTable.rows[i].cells[10].querySelector("span");
+                        let gradeSplit = [];
+                        if (gradeElement.innerHTML.includes("input")) {
+                            gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(1)").value);
+                            gradeSplit.push(gradeElement.querySelector("input[type=text]:nth-child(2)").value);
+                        } else {
+                            gradeSplit = gradeElement.innerHTML.trim().split("/");
+                        }
+
+                        if (firstRun) {
+                            gradeElement.ondblclick = function () {
+                                let newElement = changeElementToInput(gradeElement);
+                                newElement.ondblclick = null;
+                            }
+                        }
+
+                        gradeElement.style.cursor = "pointer";
+                        if (gradeSplit[0] !== "--") {
+                            let newGrade = new Grade(parseFloat(gradeSplit[0]), parseFloat(gradeSplit[1]), category);
+                            grades.push(newGrade);
+                        }
                     }
-                }
 
                     let gradeWeightedSum = 0;
                     let totalWeights = 0;
@@ -64,7 +64,6 @@ chrome.storage.local.get(["psHypoGradeCalc"], function (items) {
                 });
             });
         }
-
 
 
         function changeElementToInput(element) {

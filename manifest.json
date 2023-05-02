@@ -1,24 +1,39 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
-   "browser_action": {
-      "default_popup": "popup.html",
-      "default_title": "PowerSchool PLUS"
-   },
-   "content_scripts": [ {
-      "js": [ "mainPageEditScript.js", "mainPageProcessor.js" ],
-      "matches": [ "https://rdfzxsap.rdfzxishan.cn/guardian/home.html", "https://rdfzxsap.rdfzxishan.cn/guardian/scores.html*" ]
-   }, {
-      "js": [ "assignmentPageEditScript.js", "gradeEditCalculator.js"],
-      "matches": [ "https://rdfzxsap.rdfzxishan.cn/guardian/scores.html*" ]
-   } ],
-   "description": "A browser extension to give your PowerSchool student interface the features you need.\n Developed by Jaeheon Shim. Edited by Arthur Fu",
-   "icons": {
-      "128": "icon-128.png",
-      "16": "icon-16.png"
-   },
-   "manifest_version": 2,
-   "name": "PowerSchool PLUS",
-   "permissions": [ "storage" ],
-   "version": "0.3.0"
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "PowerSchool PLUS"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "mainPageEditScript.js",
+        "mainPageProcessor.js"
+      ],
+      "matches": [
+        "https://rdfzxsap.rdfzxishan.cn/guardian/home.html",
+        "https://rdfzxsap.rdfzxishan.cn/guardian/scores.html*"
+      ]
+    },
+    {
+      "js": [
+        "assignmentPageEditScript.js",
+        "gradeEditCalculator.js"
+      ],
+      "matches": [
+        "https://rdfzxsap.rdfzxishan.cn/guardian/scores.html*"
+      ]
+    }
+  ],
+  "description": "A browser extension to give your PowerSchool student interface the features you need.\n Developed by Jaeheon Shim. Edited by Arthur Fu.",
+  "icons": {
+    "128": "icon-128.png",
+    "16": "icon-16.png"
+  },
+  "manifest_version": 2,
+  "name": "PowerSchool PLUS",
+  "permissions": [
+    "storage"
+  ],
+  "version": "0.3.0"
 }
